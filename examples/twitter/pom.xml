@@ -58,13 +58,16 @@
             <plugin>
                 <groupId>net.wakka.soong</groupId>
                 <artifactId>soong-maven-plugin</artifactId>
-                <version>1.0-SNAPSHOT</version>
+                <version>1.1-SNAPSHOT</version>
                 <executions>
                     <execution>
                         <phase>integration-test</phase>
                         <goals>
                             <goal>integration-test</goal>
                         </goals>
+                        <configuration>
+                            <intent>net.wakka.soong.examples.twitter/.FoobarService</intent>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
