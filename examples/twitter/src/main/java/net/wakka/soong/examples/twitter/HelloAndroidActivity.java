@@ -1,4 +1,4 @@
-package net.wakka.soong.examples;
+package net.wakka.soong.examples.twitter;
 
 import android.app.Activity;
 import android.os.Bundle;
