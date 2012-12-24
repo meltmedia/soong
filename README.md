@@ -10,6 +10,8 @@ tools for android development by people who feel your pain
 
 ### traditional integration tests with full android platform support
 
+### logging methods with english readable names
+
 explanation to follow…
 
 ## FAQs
