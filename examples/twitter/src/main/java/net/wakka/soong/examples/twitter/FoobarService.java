@@ -42,6 +42,7 @@ public class FoobarService extends Service {
       JUnitCore junit = new JUnitCore();
       junit.addListener(new RunListener() {
         int failureCount = 0;
+        int testCount = 0;
 
         @Override
         public void testRunStarted(Description description) throws Exception {
@@ -50,6 +51,7 @@ public class FoobarService extends Service {
 
         @Override
         public void testRunFinished(Result result) throws Exception {
+          out.write(String.format("%d tests executed, %d tests failed\n",testCount,failureCount));
           if(failureCount == 0) {
             out.write("test run SUCCESS. :-)\n");
           } else {
@@ -59,8 +61,17 @@ public class FoobarService extends Service {
 
         @Override
         public void testFailure(Failure failure) throws Exception {
-          out.write("test failure: " + failure.getMessage() + "\n");
+          out.write(String.format("TEST FAILURE @ : %s.%s\n",
+              failure.getDescription().getClassName(), failure.getDescription().getMethodName()));
+          out.write(String.format("   %s\n",failure.getMessage()));
+          out.write(String.format("   %s\n",failure.getTestHeader()));
+          out.write(String.format("   %s\n", failure.getTrace()));
           failureCount++;
+        }
+
+        @Override
+        public void testStarted(Description description) throws Exception {
+          testCount++;
         }
       });
       junit.run(RoffelTest.class);

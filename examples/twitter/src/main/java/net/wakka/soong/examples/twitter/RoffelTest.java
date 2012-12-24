@@ -11,4 +11,12 @@ public class RoffelTest {
     fail("Fuck your boat.");
   }
 
+  @Test
+  public void testReality() {
+    assertEquals(1,1);
+  }
+
+  @Test
+  public void testNothing() { }
+
 }
