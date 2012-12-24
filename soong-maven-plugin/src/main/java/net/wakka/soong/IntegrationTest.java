@@ -1,6 +1,7 @@
 package net.wakka.soong;
 
 import org.apache.commons.exec.CommandLine;
+import org.apache.commons.exec.DefaultExecuteResultHandler;
 import org.apache.commons.exec.DefaultExecutor;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -9,10 +10,16 @@ import org.apache.maven.plugins.annotations.LifecyclePhase;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 @Mojo( name = "integration-test", defaultPhase = LifecyclePhase.INTEGRATION_TEST)
 public class IntegrationTest extends AbstractMojo {
+
+  private static final int TEN_SECONDS = 10000;
 
   private static final String START_SERVICE_COMMAND =
       "adb shell am startservice ";
@@ -25,10 +32,31 @@ public class IntegrationTest extends AbstractMojo {
   public void execute() throws MojoExecutionException, MojoFailureException {
     int exitValue = 0;
     try {
-      exitValue = new DefaultExecutor().execute(CommandLine.parse(START_SERVICE_COMMAND + intent));
-      if(exitValue != 0) {
+      boolean integrationTestingFailed = false;
+      ServerSocket cs = new ServerSocket(36912);
+      cs.setSoTimeout(TEN_SECONDS);
+      DefaultExecuteResultHandler resultHandler = new DefaultExecuteResultHandler();
+      new DefaultExecutor().execute(CommandLine.parse(START_SERVICE_COMMAND + intent), resultHandler);
+
+      Socket s = cs.accept();
+      BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
+      String nextLine = "";
+      while ((nextLine = in.readLine()) != null) {
+        System.out.println(nextLine);
+        if (nextLine.equals("TEST RUN FAILURE!!!!! :-(")) {
+         integrationTestingFailed = true;
+        }
+      }
+      in.close();
+      s.close();
+
+      if(resultHandler.hasResult() && resultHandler.getExitValue() != 0) {
         throw new MojoExecutionException("I think I failed to execute the integration test runner service. (exit code was " + exitValue + ")");
       }
+      if(integrationTestingFailed) {
+        throw new MojoFailureException("integration testing failed");
+      }
+      System.out.println("Huzzah! Integration testing successful! (Unless something else says otherwise...)");
     } catch (IOException e) {
       throw new MojoExecutionException("Something bad happened.",e);
     }

@@ -38,7 +38,6 @@ public class FoobarService extends Service {
     try {
       Socket s = new Socket("10.0.2.2",36912);
       final PrintWriter out = new PrintWriter(s.getOutputStream(), true);
-      out.write("Help me! I'm stuck inside a retarded device!");
 
       JUnitCore junit = new JUnitCore();
       junit.addListener(new RunListener() {

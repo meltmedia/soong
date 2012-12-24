@@ -8,7 +8,7 @@ public class RoffelTest {
 
   @Test
   public void testNothingAndFail() {
-    fail("BOOM!");
+    fail("Fuck your boat.");
   }
 
 }
