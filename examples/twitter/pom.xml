@@ -71,7 +71,7 @@
                             <goal>integration-test</goal>
                         </goals>
                         <configuration>
-                            <intent>net.wakka.soong.examples.twitter/.TwitterIntegrationTestRunnerService</intent>
+                            <intent>net.wakka.soong.examples.twitter/.TwitterIntegrationTestStarter</intent>
                         </configuration>
                     </execution>
                 </executions>

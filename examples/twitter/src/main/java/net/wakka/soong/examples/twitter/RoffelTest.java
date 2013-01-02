@@ -6,10 +6,10 @@ import static junit.framework.Assert.*;
 
 public class RoffelTest {
 
-  @Test
-  public void testNothingAndFail() {
-    fail("Fuck your boat.");
-  }
+//  @Test
+//  public void testNothingAndFail() {
+//    fail("Fuck your boat.");
+//  }
 
   @Test
   public void testReality() {

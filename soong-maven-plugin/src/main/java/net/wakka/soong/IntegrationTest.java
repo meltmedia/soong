@@ -22,9 +22,11 @@ public class IntegrationTest extends AbstractMojo {
   private static final int TEN_SECONDS = 10000;
 
   private static final String START_SERVICE_COMMAND =
-      "adb shell am startservice ";
+      "adb shell am broadcast -n ";
 
-  // net.wakka.soong.examples.twitter/.FoobarService
+  // MAGIC SPELLS!
+  //adb shell am startservice -n net.wakka.soong.examples.twitter/.TwitterIntegrationTestRunnerService
+  //adb shell am broadcast -n net.wakka.soong.examples.twitter/.TwitterIntegrationTestStarter
   @Parameter( property = "integrationTestRunnerServiceIntent", required = true )
   private String intent;
 

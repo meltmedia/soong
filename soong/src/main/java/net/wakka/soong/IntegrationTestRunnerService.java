@@ -60,8 +60,12 @@ public abstract class IntegrationTestRunnerService extends Service {
     Log.info("net.wakka.soong","performing integration tests");
 
     // disable all thread policy restrictions so that we may use sockets
-    StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-    StrictMode.setThreadPolicy(policy);
+    try {
+      StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+      StrictMode.setThreadPolicy(policy);
+    } catch (NoClassDefFoundError e) {
+      // LOL!
+    }
 
     try {
       // TODO: make the socket address configurable
