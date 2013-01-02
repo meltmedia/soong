@@ -5,6 +5,7 @@ tools for android development by people who feel your pain
 
 * Maven. Use it or get out.
 * Comprehensive automated developer testing is very, very, very important. (TDD is great!)
+* Strong backward compatibility; Eclair MR1 2.1.X (API 7) to JellyBean 4.2 (API 17)
 
 ## Features
 
