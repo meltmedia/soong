@@ -14,8 +14,6 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
-    <service android:name=".TwitterIntegrationTestRunnerService"/>
-    <receiver android:name="net.wakka.soong.examples.twitter.TwitterIntegrationTestStarter"/>
   </application>
 </manifest>
 
