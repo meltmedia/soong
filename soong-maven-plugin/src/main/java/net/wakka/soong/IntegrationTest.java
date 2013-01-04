@@ -32,7 +32,6 @@ public class IntegrationTest extends AbstractMojo {
 
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
-    int exitValue = 0;
     try {
       boolean integrationTestingFailed = false;
       ServerSocket cs = new ServerSocket(36912);
@@ -52,15 +51,12 @@ public class IntegrationTest extends AbstractMojo {
       in.close();
       s.close();
 
-      if(resultHandler.hasResult() && resultHandler.getExitValue() != 0) {
-        throw new MojoExecutionException("I think I failed to execute the integration test runner service. (exit code was " + exitValue + ")");
-      }
       if(integrationTestingFailed) {
         throw new MojoFailureException("integration testing failed");
       }
       System.out.println("Huzzah! Integration testing successful! (Unless something else says otherwise...)");
     } catch (IOException e) {
-      throw new MojoExecutionException("Something bad happened.",e);
+      throw new MojoExecutionException("Something bad happened. (PROTIP: make sure that adb is on your path)",e);
     }
   }
 
