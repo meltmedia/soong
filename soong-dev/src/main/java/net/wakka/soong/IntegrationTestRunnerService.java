@@ -1,6 +1,7 @@
 package net.wakka.soong;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.StrictMode;
@@ -11,6 +12,7 @@ import org.junit.runner.notification.Failure;
 import org.junit.runner.notification.RunListener;
 
 import java.io.PrintWriter;
+import java.lang.reflect.Method;
 import java.net.Socket;
 import java.util.Set;
 
@@ -57,7 +59,7 @@ public abstract class IntegrationTestRunnerService extends Service {
   public abstract Set<Class> getTestClasses();
 
   public void performIntegrationTests() {
-    Log.info("net.wakka.soong","performing integration tests");
+    Log.info("net.wakka.soong","### ### ### PERFORMING INTEGRATION TESTS");
 
     // disable all thread policy restrictions so that we may use sockets
     try {
@@ -116,12 +118,21 @@ public abstract class IntegrationTestRunnerService extends Service {
       });
 
       for(Class clazz : getTestClasses()) {
+        try {
+          Method method = clazz.getDeclaredMethod("setContext", Context.class);
+          method.invoke(null,this.getApplicationContext());
+          Log.info("net.wakka.soong","successfully setContext on test class " + clazz.getCanonicalName());
+        } catch (NoSuchMethodException e) {
+          Log.info("net.wakka.soong",clazz.getCanonicalName() + " does not accept setContext invokations");
+        }
         junit.run(clazz);
       }
 
       out.close();
     } catch (Exception e) {
       Log.error("net.wakka.soong.IntegrationTestRunnerService","Caught an error while trying to phone home.", e);
+    } finally {
+      Log.info("net.wakka.soong","### ### ### FINISHED INTEGRATION TESTS");
     }
   }
 

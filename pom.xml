@@ -8,11 +8,11 @@
     <packaging>pom</packaging>
     <name>soong-master</name>
 
-		<modules>
-	    <module>soong</module>
-			<module>soong-dev</module>
-			<module>soong-maven-plugin</module>
-			<module>examples/twitter</module>
+    <modules>
+        <module>soong</module>
+        <module>soong-dev</module>
+        <module>soong-maven-plugin</module>
+        <module>examples/twitter</module>
     </modules>
 
 </project>

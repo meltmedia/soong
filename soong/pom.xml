@@ -8,6 +8,12 @@
     <packaging>jar</packaging>
     <name>soong</name>
 
+    <parent>
+        <groupId>net.wakka.soong</groupId>
+        <artifactId>soong-master</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
     <properties>
         <platform.version> 2.3.3
             </platform.version>
