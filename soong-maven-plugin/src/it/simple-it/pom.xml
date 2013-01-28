@@ -3,9 +3,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>net.wakka.soong.it</groupId>
+  <groupId>com.meltmedia.soong.it</groupId>
   <artifactId>simple-it</artifactId>
-  <version>1.0-SNAPSHOT</version>
+	<version>1.2.0</version>
 
   <description>A simple IT verifying the basic use case.</description>
 

@@ -2,9 +2,9 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>net.wakka.soong.examples.twitter</groupId>
+    <groupId>com.meltmedia.soong.examples.twitter</groupId>
     <artifactId>twitter</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.2.0</version>
     <packaging>apk</packaging>
     <name>twitter</name>
 
@@ -25,9 +25,9 @@
             <version>4.8.2</version>
         </dependency>
         <dependency>
-            <groupId>net.wakka.soong</groupId>
+            <groupId>com.meltmedia.soong</groupId>
             <artifactId>soong</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.2.0</version>
         </dependency>
     </dependencies>
 
@@ -74,9 +74,9 @@
 
             <dependencies>
                 <dependency>
-                    <groupId>net.wakka.soong</groupId>
+                    <groupId>com.meltmedia.soong</groupId>
                     <artifactId>soong-dev</artifactId>
-                    <version>1.0-SNAPSHOT</version>
+                    <version>1.2.0</version>
                 </dependency>
             </dependencies>
 
@@ -129,9 +129,9 @@
                     </plugin>
 
                     <plugin>
-                        <groupId>net.wakka.soong</groupId>
+                        <groupId>com.meltmedia.soong</groupId>
                         <artifactId>soong-maven-plugin</artifactId>
-                        <version>1.1-SNAPSHOT</version>
+                        <version>1.2.0</version>
                         <executions>
                             <execution>
                                 <phase>integration-test</phase>
@@ -139,7 +139,7 @@
                                     <goal>integration-test</goal>
                                 </goals>
                                 <configuration>
-                                    <intent>net.wakka.soong.examples.twitter/.TwitterIntegrationTestStarter</intent>
+                                    <intent>com.meltmedia.soong.examples.twitter/.TwitterIntegrationTestStarter</intent>
                                 </configuration>
                             </execution>
                         </executions>

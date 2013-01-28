@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="net.wakka.soong.examples.twitter" android:versionCode="1" android:versionName="1.0-SNAPSHOT">
+          package="com.meltmedia.soong.examples.twitter" android:versionCode="1" android:versionName="1.0-SNAPSHOT">
 
     <uses-sdk android:minSdkVersion="7"
               android:targetSdkVersion="16" />
@@ -15,6 +15,6 @@
             </intent-filter>
         </activity>
         <service android:name=".TwitterIntegrationTestRunnerService"/>
-        <receiver android:name="net.wakka.soong.examples.twitter.TwitterIntegrationTestStarter"/>
+        <receiver android:name=".TwitterIntegrationTestStarter"/>
     </application>
 </manifest>
